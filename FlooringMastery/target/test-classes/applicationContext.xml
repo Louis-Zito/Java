@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bean definitions go here -->
+    <bean id="orderDao"
+          class="dao.OrderDaoFileImpl">
+          <constructor-arg index = "0" type = "java.lang.String" value="TestFolder\\"/>
+    </bean>
+
+
+    <bean id="productDao"
+          class="dao.ProductDaoFileImpl">
+    </bean>
+
+    <bean id="taxDao"
+          class="dao.TaxDaoFileImpl">
+    </bean>
+
+    <bean id="orderDaoStub"
+          class="service.FlooringMasteryOrderDaoStubImpl"/>
+
+    <bean id="auditDaoStub"
+          class="dao.FlooringMasteryAudiDaoFileImpl"/>
+
+    <bean id="serviceLayer"
+          class="service.FlooringMasterServiceLayerImpl">
+        <constructor-arg ref="orderDaoStub"/>
+        <constructor-arg ref="productDao"/>
+        <constructor-arg ref="taxDao"/>
+        <constructor-arg ref="auditDaoStub"/>
+    </bean>
+
+</beans>
